@@ -1,0 +1,5 @@
+# Use UIS Terraform deployment workflow.
+include:
+  - project: uis/devops/continuous-delivery/ci-templates
+    file: /terraform-pipeline.yml
+    ref: v3.0.0

@@ -1,0 +1,45 @@
+# Basic CI configuration to run terraform fmt over the cookiecutter generated
+# files.
+
+stages:
+  - test
+
+terraform_fmt:
+  stage: test
+
+  image: "registry.gitlab.developers.cam.ac.uk/uis/devops/infra/dockerimages/logan-terraform:1.1"
+
+  script:
+    # Install cookiecutter
+    - apk add py3-pip
+    - pip3 install cookiecutter
+
+    # Generate a Postgres deployment project
+    - >
+      cookiecutter . --output-dir /tmp/generated-postgres --no-input
+      "product_name=Test Deploy"
+      "product_configuration_bucket=bucket-placeholder"
+      "gitlab_infra_project_id_name=infrastructure"
+      "gitlab_infra_project_id=1234"
+      "gitlab_webapp_project_id=5678"
+      "product_admin_credentials_secret_url=sm://example-project/example-secret"
+      "database_type=postgres"
+      "use_cloud_load_balancer=false"
+
+    # Check for terraform fmt violations
+    - terraform fmt -recursive -diff -check -no-color /tmp/generated-postgres
+
+    # Generate a MySQL deployment project
+    - >
+      cookiecutter . --output-dir /tmp/generated-mysql --no-input
+      "product_name=Test Deploy"
+      "product_configuration_bucket=bucket-placeholder"
+      "gitlab_infra_project_id_name=infrastructure"
+      "gitlab_infra_project_id=1234"
+      "gitlab_webapp_project_id=5678"
+      "product_admin_credentials_secret_url=sm://example-project/example-secret"
+      "database_type=mysql"
+      "use_cloud_load_balancer=false"
+
+    # Check for terraform fmt violations
+    - terraform fmt -recursive -diff -check -no-color /tmp/generated-mysql
