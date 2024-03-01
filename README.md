@@ -86,5 +86,3 @@ You can do that with the following command.
 ```bash
 cookiecutter https://gitlab.developers.cam.ac.uk/uis/devops/gcp-deploy-boilerplate.git --checkout <branch>
 ```
-
-testing
