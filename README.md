@@ -88,5 +88,3 @@ cookiecutter https://gitlab.developers.cam.ac.uk/uis/devops/gcp-deploy-boilerpla
 ```
 
 testing
-
-more testing
