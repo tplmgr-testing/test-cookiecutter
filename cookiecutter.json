@@ -1,22 +1,31 @@
 {
-    "product_name": null,
-    "product_slug": null,
-    "product_configuration_bucket": null,
-    "product_configuration_path": "config_v1.json",
-    "notification_channel": "",
-    "terraform_state_sa_email": null,
-    "gitlab_infra_project_name": "infrastructure",
-    "gitlab_infra_project_id": null,
-    "gitlab_webapp_project_id": null,
-    "database_type": [
-        "postgres",
-        "mysql"
-    ],
-    "use_cloud_load_balancer": [
-        "true",
-        "false"
-    ],
-    "__prompts__": {
-        "notification_channel": "notification_channel (Use a notification channel created by the gcp-product-factory. Leave empty to skip.)"
+  "product_name": null,
+  "_private_raw": "{{ cookiecutter.product_name|lower }}",
+  "__private_rendered": "{{ cookiecutter.product_name|lower }}",
+  "some_boolean_choice": true,
+  "file_types": {
+    "png": {
+      "name": "Portable Network Graphic",
+      "library": "libpng",
+      "apps": ["GIMP"]
+    },
+    "bmp": {
+      "name": "Bitmap",
+      "library": "libbmp",
+      "apps": ["Paint", "GIMP"]
     }
+  },
+  "product_slug": null,
+  "product_configuration_bucket": null,
+  "product_configuration_path": "config_v1.json",
+  "notification_channel": "",
+  "terraform_state_sa_email": null,
+  "gitlab_infra_project_name": "infrastructure",
+  "gitlab_infra_project_id": null,
+  "gitlab_webapp_project_id": null,
+  "database_type": ["postgres", "mysql"],
+  "use_cloud_load_balancer": ["true", "false"],
+  "__prompts__": {
+    "notification_channel": "notification_channel (Use a notification channel created by the gcp-product-factory. Leave empty to skip.)"
+  }
 }
